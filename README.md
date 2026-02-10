@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://bagisto.com/en/headless-ecommerce/">
+  <a href="https://bagisto.com/en/headless-commerce/">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/bagisto/temp-media/0b0984778fae92633f57e625c5494ead1fe320c3/dark-logo-P5H7MBtx.svg">
       <source media="(prefers-color-scheme: light)" srcset="https://bagisto.com/wp-content/themes/bagisto/images/logo.png">
@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-    <a href="https://bagisto.com/en/headless-ecommerce/">Website</a> | <a href="https://bagisto.com/en/bagisto-headless-ecommerce-installation-guide/">Documentation</a> | <a href="https://forums.bagisto.com/">Forums</a> | <a href="https://www.facebook.com/groups/bagisto/">Community</a>
+    <a href="https://bagisto.com/en/headless-commerce/">Website</a> | <a href="https://headless-doc.bagisto.com/bagisto-native/integration-guide/getting-started">Documentation</a> | <a href="https://forums.bagisto.com/">Forums</a> | <a href="https://www.facebook.com/groups/bagisto/">Community</a>
 </p>
 
 <p align="center">
@@ -21,157 +21,103 @@
     <a href="https://packagist.org/packages/bagisto/bagisto"><img src="https://poser.pugx.org/bagisto/bagisto/license.svg" alt="License"></a>
 </p>
 
-#  Bagisto Next.js Commerce
+# Bagisto Native Commerce
 
-A [**headless eCommerce framework**](https://bagisto.com/en/headless-ecommerce/) built with **Next.js** and powered by **Bagisto**, designed for modern scalability and flexibility.
-Through layered caching and optimized rendering strategies, it consistently achieves a **100/100 Core Web Vitals score**, delivering lightning-fast performance and seamless shopping experiences.
+**Bagisto Native Commerce** is a ready-to-use storefront built on Bagisto Headless with Bagisto Native integration, enabling any React or Next.js application to seamlessly work with native mobile apps, modern frontend frameworks, and API-driven architectures.
 
-Check the [Documentation](https://bagisto.com/en/bagisto-headless-ecommerce-installation-guide/) to quickly set up your Headless eCommerce store.
+You can directly use this storefront without building everything from scratch.
 
-**Bagisto Version:** v2.3.0
+---
 
-**Bagisto GraphQL API:** v2.3.0
+##  What We Focus On
+- **Native-first** commerce experiences
+- **Modern frontend stacks** (Next.js, React)
+- **Mobile bridges** & integrations
+- **Reusable SDKs** & utilities
 
-![Bagisto Headless Commerce Image](https://raw.githubusercontent.com/bagisto/temp-media/refs/heads/master/bagisto-headless-commerce-home.png)
-## Features
+## Packages
+| Package | Description |
+|---------|-------------|
+| `@bagisto-native/react` | React wrappers for the Web Components included in your projects |
+| `@bagisto-native/core` | Core utilities and shared logic |
 
-- **Ultra-fast storefront** with 100/100 Core Web Vitals score.  
-- **Layered caching** for API responses and page rendering.  
-- Fully **responsive and mobile-friendly** design.  
-- SEO optimized with meta tags, OpenGraph, and Twitter cards.  
-- Secure authentication via **NextAuth.js**.  
-- Powered by **Bagisto** GraphQL APIs for robust commerce functionality.  
-- **Incremental Static Regeneration (ISR)** with revalidation.
-  
-Bagisto Open Source Headless eCommerce is optimized to deliver a **100/100 Core Web Vitals score** across devices, ensuring top-tier performance and user experience.
 
-![Bagisto Headless Commerce Image](https://raw.githubusercontent.com/bagisto/temp-media/refs/heads/master/bagisto-headless-commerce-performance.png)
 
 ## Prerequisites
-
-Before you begin, ensure you have the following installed:
-
-- **Node.js** 18+ and **pnpm**
-- Check Bagisto [backend requirement detail](https://devdocs.bagisto.com/2.3/introduction/requirements.html#server-configuration)
+Before starting, ensure you have:
+- **Node.js 18** or higher
+- **React/Next.js** project 
+- **Bagisto store**
+- **pnpm** installed
 
 ---
 
-## Installation
+## Step 1: Project Setup
 
-1) Install Bagisto
- 
-    Begin by [installing the Bagisto](https://devdocs.bagisto.com/) eCommerce platform on your server or local environment.
+### 1. Clone/Create the Storefront
+If you haven't already, you can create a new storefront or use this repository directly:
+```bash
+git clone https://github.com/bagisto/bagisto-native-commerce
+cd bagisto-native-commerce
+```
 
-2) Install the Bagisto Headless Extension
+### 2. Install Dependencies
+```bash
+pnpm install
+```
 
-    After installing Bagisto, install the [Bagisto Headless Extension](https://github.com/bagisto/headless-ecommerce/) to expose the required APIs for your frontend.
+### 3. Configure Environment
+Create a `.env.local` file and add your Bagisto API details. This keeps your settings secure and organized.
 
-3) Get your storefront up and running in one command:
-   
+### One-Click Deploy to Netlify
+
+Click the button above to deploy your own copy of Bagisto Native Commerce to Netlify instantly!
+
+
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/bagisto/bagisto-native-commerce)
+
+- *Note:* Add env variables in Netlify dashboard
+
+---
+
+## Step 3: Connect Native Apps
+
+Once your Next.js project is running (e.g., at `http://localhost:3000`), you can connect it to the native mobile applications.
+
+### iOS: Set Up for iOS App
+1. **Clone the iOS Repository:**
    ```bash
-   npx -y @bagisto-headless/create your-storefront
+   git clone https://github.com/SocialMobikul/BagistoNative_iOS.git
+   cd BagistoNative_iOS
    ```
-   
-4) Configure `.env.local` in the Next.js Project
+2. **Open in Xcode:**
+   ```bash
+   open BagistoNative.xcodeproj
+   ```
+3. **Configure Base URL:**
+   Find the `base_url` variable in your Swift code and replace it with your project URL:
+   ```swift
+   let base_url = "http://localhost:3000"
+   ```
+4. **Build & Run:** Select a simulator and click **Run**.
 
-   In your Next.js frontend project, create or update your `.env.local` file with the following variables:
-
-| Variable | Description | Example |
-|----------|-------------|---------|
-| `SITE_NAME` | Your store name | `My Awesome Store` |
-| `BAGISTO_STORE_DOMAIN` | Your Bagisto backend URL | `https://api.mystore.com` |
-| `IMAGE_DOMAIN` | Domain for product images | `api.mystore.com` |
-| `REVALIDATION_DURATION` | ISR cache duration (seconds) | `3600` |
-| `NEXTAUTH_URL` | Your frontend URL | `https://mystore.com` |
-| `NEXTAUTH_SECRET` | Random secret for NextAuth | Generate with `openssl rand -base64 32` |
-
-
-**Important Notes**  
-- You will need to use the environment variables defined in `.env.example` to run Next.js Commerce.  
-- It’s recommended to use **Vercel Environment Variables**, but a `.env` file is sufficient for local development.  
-- **Never commit your `.env` file** to version control — it contains secrets that would allow others to control your Bagisto store.  
-
----
-
-**Vercel Setup**
-
-Install the Vercel CLI:
-
-```bash
-npm i -g vercel
-```
-
-Link your local instance with Vercel and GitHub accounts (this creates the `.vercel` directory):
-
-```bash
-vercel link
-```
-
-Download your environment variables:
-
-```bash
-vercel env pull
-```
+### Android: Set Up for Android App
+1. **Clone the Android Repository:**
+   ```bash
+   git clone https://github.com/SocialMobikul/BagistoNative_android.git
+   cd BagistoNative_android
+   ```
+2. **Open in Android Studio:** Open the project folder.
+3. **Configure Base URL:**
+   Find the `base_url` variable in `Constants.java` (or equivalent):
+   ```java
+   public static String base_url = "http://localhost:3000";
+   ```
+4. **Build & Run:** Select an emulator and click **Run**.
 
 ---
 
-**Run the development server:**
-
-```bash
-pnpm dev
-```
-
-**Build for production:**
-
-```bash
-pnpm build
-pnpm start
-```
-
----
-
-## Usage
-
-Start the development server:
-
-```bash
-pnpm dev
-```
-Access the store at:[http://localhost:3000](http://localhost:3000)
-
----
-
-## Products
-
-The Open Source Headless eCommerce allows users to browse a wide range of products with built-in pagination and search functionality. Each product has its own detailed page showcasing images, descriptions, pricing, reviews, and availability.
-
-Bagisto Headless Commerce APIs support multiple product types, including simple, configurable, bundled, and downloadable products, ensuring flexibility for different business needs.
-
-![Bagisto Headless Commerce Image](https://raw.githubusercontent.com/bagisto/temp-media/refs/heads/master/bagisto-headless-commerce-product-page.png)
-
-## Categories
-
-Products are neatly organized into hierarchical categories, making it easy for customers to navigate the store. Each category page displays relevant product listings with filtering and sorting options for a better shopping experience.
-
-The Open Source Headless eCommerce also ensures SEO-friendly category URLs with meta titles, descriptions, and breadcrumbs for improved discoverability.
-
-![Bagisto Headless Commerce Image](https://raw.githubusercontent.com/bagisto/temp-media/refs/heads/master/bagisto-headless-commercecategory.png)
- 
-## Checkout
-
-The checkout process is fully functional, featuring complete cart management where customers can add, update, or remove items.
-
-Both guest and logged-in users can proceed through checkout, selecting shipping addresses and preferred payment methods.
-
-Once the order is placed, it is instantly synchronized with the Bagisto backend, enabling smooth order processing and management.
-
-![Bagisto Headless Commerce Image](https://raw.githubusercontent.com/bagisto/temp-media/refs/heads/master/bagisto-headless-commerce-cart-checkout.png)
-
-## Community
-Get Bagisto Headless Commerce support on [Facebook Group](https://www.facebook.com/groups/bagisto) and [Forum](https://forums.bagisto.com/)
-
-## License
-Bagisto headless eCommerce framework that will always remain free under the [MIT License](https://github.com/bagisto/nextjs-commerce/blob/main/license.md).
-
-## Security Vulnerabilities
-If you think that you have found a security issue in Bagisto Headless Commerce, please do not use the issue tracker and do not post it publicly. Instead, all security issues must be sent to [mailto:support@bagisto.com](mailto:support@bagisto.com).
+## Helpful Resources
+- [Bagisto Native iOS](https://github.com/SocialMobikul/BagistoNative_iOS)
+- [Bagisto Native Android](https://github.com/SocialMobikul/BagistoNative_android)
+- [Official Documentation](https://headless-doc.bagisto.com/bagisto-native/integration-guide/getting-started)
