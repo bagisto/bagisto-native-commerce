@@ -41,14 +41,10 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# npm
-**/package-lock.json
-
-# Yarn
-**/yarn.lock
-
-# pnpm
-**/pnpm-lock.yaml
-
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
 
 ~
+
+fexit
